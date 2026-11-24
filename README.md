@@ -26,4 +26,12 @@ The engine reads the game from `MAKEFUN_ENV_URL` and replies with UCI moves.
 - No provider key, file read or wall clock is used by the entrypoint.
 - All scoring is deterministic, which is what the practice replay checks.
 
+## Round 3 search budget
+
+- The first two rounds used 80,000 search nodes per move and graded 1,099 Elo, below the 1,154 practice floor.
+- A local trial with 80k nodes finished in 492 seconds with no timeouts, leaving most of the 1,800-second trial budget unused.
+- Round 3 raises the fixed budget to 150,000 nodes to search deeper against the depth-4 and nodes-100k anchors.
+- The budget stays a fixed node count rather than a clock, so the replay check still reproduces each move exactly.
+- Source comments were trimmed after compression so the packed entrypoint fits under the 4,096-byte cap.
+
 Submissions and prizes: https://make.fun/r/xzgr46f5
