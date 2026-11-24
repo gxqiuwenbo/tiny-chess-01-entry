@@ -17,4 +17,13 @@ Python 3.13, standard library only:
 
 The engine reads the game from `MAKEFUN_ENV_URL` and replies with UCI moves.
 
+## Design notes
+
+- Timing is deliberately absent: every move is chosen from the same node budget, so replayed games follow the same line.
+- UCI output is checked against the env's legal-move list before it is sent.
+- Castling rights and en-passant squares are mapped into the Sunfish board representation before each search.
+- The committed entrypoint is produced by the kit's `compress` command from the readable source bundled with the transcripts.
+- No provider key, file read or wall clock is used by the entrypoint.
+- All scoring is deterministic, which is what the practice replay checks.
+
 Submissions and prizes: https://make.fun/r/xzgr46f5
